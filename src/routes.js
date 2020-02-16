@@ -26,5 +26,8 @@ routes.put('/user', UserController.update);
 routes.post('/files', upload.single('file'), FileController.store);
 
 routes.post('/deliveryman', DeliverymanController.store);
+routes.delete('/deliveryman/:id', DeliverymanController.delete);
+routes.put('/deliveryman/:id', DeliverymanController.update);
+routes.get('/deliveryman', DeliverymanController.index);
 
 export default routes;
