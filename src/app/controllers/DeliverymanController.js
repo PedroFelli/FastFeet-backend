@@ -50,13 +50,19 @@ class DeliverymanController {
 
     await deliveryman.destroy();
 
-    return res.json({ msg: 'Item deletado' });
+    return res.json({ msg: 'Entregador deletado' });
   }
 
   async index(req, res) {
     const deliverymans = await Deliveryman.findAll({});
 
     return res.json(deliverymans);
+  }
+
+  async show(req, res) {
+    const deliveryman = await Deliveryman.findByPk(req.params.id);
+
+    return res.json(deliveryman);
   }
 }
 
