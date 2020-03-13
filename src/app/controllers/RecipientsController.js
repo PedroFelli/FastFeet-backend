@@ -7,6 +7,7 @@ class RecipientsController {
       rua: Yup.string().required(),
       numero: Yup.number(),
       complemento: Yup.string(),
+      nome: Yup.string().required(),
       estado: Yup.string().required(),
       cidade: Yup.string().required(),
       cep: Yup.number()
@@ -18,6 +19,9 @@ class RecipientsController {
     if (!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'Validation fails' });
     }
+
+    console.log(req.body);
+
     const recipient = await Recipient.create(req.body);
 
     return res.json(recipient);
@@ -28,6 +32,7 @@ class RecipientsController {
       rua: Yup.string().required(),
       numero: Yup.number(),
       complemento: Yup.string(),
+      nome: Yup.string().required(),
       estado: Yup.string().required(),
       cidade: Yup.string().required(),
       cep: Yup.number()
@@ -40,7 +45,7 @@ class RecipientsController {
       return res.status(400).json({ error: 'Validation fails' });
     }
 
-    const recipient = await Recipient.findByPk(req.body.id);
+    const recipient = await Recipient.findByPk(req.params.id);
 
     await recipient.update(req.body);
 
@@ -64,6 +69,22 @@ class RecipientsController {
     });
 
     return res.json(recipients);
+  }
+
+  async delete(req, res) {
+    const recipient = await Recipient.findByPk(req.params.id);
+
+    await recipient.destroy();
+
+    return res.json({ mg: 'recipient destroy' });
+  }
+
+  async show(req, res) {
+    const recipient = await Recipient.findOne({
+      where: { id: req.params.id },
+    });
+
+    return res.json(recipient);
   }
 }
 

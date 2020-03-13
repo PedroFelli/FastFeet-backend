@@ -20,7 +20,9 @@ routes.use(authMiddleware);
 
 routes.get('/recipients', RecipientsController.index);
 routes.post('/recipients', RecipientsController.store);
-routes.put('/recipients', RecipientsController.update);
+routes.put('/recipients/:id', RecipientsController.update);
+routes.delete('/recipients/:id', RecipientsController.delete);
+routes.get('/recipients/:id', RecipientsController.show);
 
 routes.put('/user', UserController.update);
 
