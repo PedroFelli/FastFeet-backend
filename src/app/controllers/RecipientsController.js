@@ -10,10 +10,7 @@ class RecipientsController {
       nome: Yup.string().required(),
       estado: Yup.string().required(),
       cidade: Yup.string().required(),
-      cep: Yup.number()
-        .integer()
-        .min(8)
-        .required(),
+      cep: Yup.string().required(),
     });
 
     if (!(await schema.isValid(req.body))) {
@@ -35,10 +32,7 @@ class RecipientsController {
       nome: Yup.string().required(),
       estado: Yup.string().required(),
       cidade: Yup.string().required(),
-      cep: Yup.number()
-        .integer()
-        .min(8)
-        .required(),
+      cep: Yup.string().required(),
     });
 
     if (!(await schema.isValid(req.body))) {
